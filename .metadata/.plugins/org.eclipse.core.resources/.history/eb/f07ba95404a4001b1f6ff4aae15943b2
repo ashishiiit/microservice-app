@@ -1,0 +1,7 @@
+package com.coupan.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CoupanRepository extends JpaRepository<T, ID> {
+
+}
