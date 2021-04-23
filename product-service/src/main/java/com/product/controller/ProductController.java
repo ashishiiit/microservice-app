@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.product.dto.Coupan;
+import com.product.feignclient.CoupanClient;
 import com.product.model.Product;
 import com.product.repository.ProductRepository;
 
@@ -16,9 +18,14 @@ public class ProductController {
 
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private CoupanClient coupanClient;
 	
 	@PostMapping(value="/createProduct")
 	public ResponseEntity<Product> createProduct(@RequestBody Product product){
+		//call coupan-service to consume couapn
+		Coupan coupan = coupanClient.findByCode(product.getCode());
+		product.setPrice(product.getPrice().subtract(coupan.getDiscount()));
 		return ResponseEntity.ok(productRepository.save(product));
 	}
 }

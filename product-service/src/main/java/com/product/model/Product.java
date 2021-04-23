@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Product {
@@ -15,6 +16,18 @@ public class Product {
 	private String name;
 	private String description;
 	private BigDecimal price;
+    
+	//here we don't want to save code into data base why here we declare code as @Transient
+	@Transient
+	private String code;
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	public Long getId() {
 		return id;
