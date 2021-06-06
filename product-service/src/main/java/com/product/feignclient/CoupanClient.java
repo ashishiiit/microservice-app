@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.product.dto.Coupan;
 //when eureka is not there then we have to pass url @FeignClient.
-@FeignClient("COUPAN-SERVICE")
+@FeignClient("GATEWAY-SERVICE")
 public interface CoupanClient {
-	@GetMapping("/api/v1/getCoupan/{code}")
+	@GetMapping("/api/v1/coupan/fetch/{code}")
 	Coupan findByCode(@PathVariable("code") String code);
 }

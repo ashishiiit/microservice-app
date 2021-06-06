@@ -13,7 +13,7 @@ import com.product.model.Product;
 import com.product.repository.ProductRepository;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/product")
 public class ProductController {
 
 	@Autowired
@@ -21,7 +21,7 @@ public class ProductController {
 	@Autowired
 	private CoupanClient coupanClient;
 	
-	@PostMapping(value="/createProduct")
+	@PostMapping(value="/create")
 	public ResponseEntity<Product> createProduct(@RequestBody Product product){
 		//call coupan-service to consume couapn
 		Coupan coupan = coupanClient.findByCode(product.getCode());

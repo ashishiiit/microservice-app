@@ -13,19 +13,20 @@ import com.coupan.model.Coupan;
 import com.coupan.repository.CoupanRepository;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/coupan")
 public class CoupanController {
 
 	@Autowired
 	private CoupanRepository coupanRepository;
 	
-	@PostMapping(value="/saveCoupan")
+	@PostMapping(value="/save")
 	public ResponseEntity<Coupan> createCoupan(@RequestBody Coupan coupan) {
 		return ResponseEntity.ok(coupanRepository.save(coupan)) ;
 	}
 	
-	@GetMapping(value="/getCoupan/{code}")
+	@GetMapping(value="/fetch/{code}")
 	public ResponseEntity<Coupan> getCoupan(@PathVariable("code") String code) {
+		System.out.println("server - 1");
 		return ResponseEntity.ok(coupanRepository.findByCode(code));
 	}
 }
